@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>photosConversion</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<style>
+			#wrap{
+				position: relative;
+				margin: 30px auto;
+				width: 658px;
+				height: 517px;
+				background: url(image/bg.gif) no-repeat;
+			}
+			#wrap span:nth-of-type(1){
+				position: absolute;
+				left: 46px;
+				top: 0;
+				width: 121px;
+				height: 143px;
+				background: url(image/bg_1.png) no-repeat;
+				z-index: 2;
+			}
+			#wrap span:nth-of-type(2){
+				position: absolute;
+				left: 490px;
+				top: 0;
+				width: 143px;
+				height: 158px;
+				background: url(image/bg_2.png) no-repeat;
+				z-index: 2;
+			}
+			.list{
+				position: absolute;
+				left: 143px;
+				top: 6px;
+				width: 380px;
+				height: 290px;
+				overflow: hidden;
+			}
+			.list ul{
+				width: 1520px;
+				height: 290px;
+				position:absolute;
+				left:0;
+				top:0;
+			}
+			.list li{
+				width: 380px;
+				height: 290px;
+				float: left;
+			}
+			.list img{
+				width: 380px;
+				height: 290px;
+			}
+		</style>
+	</head>
+	<body>
+		<section id="wrap">
+			<span></span>
+			<span></span>
+			<div class="list">
+				<ul class="list_ul">
+					<!--<li>
+						<img src="image/1.gif"/>
+					</li>
+					<li>
+						<img src="image/2.jpg"/>
+					</li>
+					<li>
+						<img src="image/3.jpg"/>
+					</li>
+					<li>
+						<img src="image/4.jpg"/>
+					</li>-->
+				</ul>
+			</div>
+		</section>
+	</body>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script>
+		var data={
+			img:[
+				"image/1.gif",
+				"image/2.jpg",
+				"image/3.jpg",
+				"image/4.jpg"
+			]
+		};
+		var $list = $('.list_ul');
+		var str=`
+			<li>
+				<img src=${data.img[0]}/>
+			</li>
+			<li>
+				<img src=${data.img[1]}/>
+			</li>
+			<li>
+				<img src=${data.img[2]}/>
+			</li>
+			<li>
+				<img src=${data.img[3]}/>
+			</li>
+		`;
+		$list[0].innerHTML=str;
+		var i=0;
+		var flag=true;
+		fn();
+		function fn(){
+			$list.animate({
+				left:-380*i+'px'
+			},1500,function(){
+				if(flag){
+					i++;
+					if(i==3){
+						flag=!flag;
+					}
+				}else{
+					i--;
+					if(i==0){
+						flag=!flag;
+					}
+				}
+				fn();
+			})
+		}
+	</script>
+</html>
